@@ -1,0 +1,32 @@
+name = Music
+description = Music blog install profile.
+version = 7.x-1.0
+core = 7.x
+project = 'Music Blog'
+
+; core
+dependencies[] = block
+dependencies[] = contextual
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = dblog
+dependencies[] = search
+dependencies[] = shortcut
+dependencies[] = toolbar
+dependencies[] = field_ui
+dependencies[] = file
+
+; contrib
+dependencies[] = advagg
+dependencies[] = cdn
+dependencies[] = ctools
+dependencies[] = pathauto
+dependencies[] = token
+dependencies[] = transliteration
+dependencies[] = views
