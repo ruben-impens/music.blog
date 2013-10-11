@@ -8,7 +8,7 @@ sites/*/files
 sites/*/private
 
 # Ignore default text files
-.htaccess
+# .htaccess
 robots.txt
 /CHANGELOG.txt
 /COPYRIGHT.txt
