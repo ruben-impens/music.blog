@@ -19,6 +19,7 @@ dependencies[] = taxonomy
 dependencies[] = dblog
 dependencies[] = search
 dependencies[] = shortcut
+dependencies[] = strongarm
 dependencies[] = toolbar
 dependencies[] = field_ui
 dependencies[] = file
