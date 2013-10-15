@@ -41,6 +41,10 @@ function music_install() {
   }
   $query->execute();
 
+  // Set the admin theme.
+  theme_enable(array('tao', 'rubik'));
+  variable_set('admin_theme', 'rubik');
+
   // Allow visitor account creation, but with administrative approval.
   variable_set('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL);
 
