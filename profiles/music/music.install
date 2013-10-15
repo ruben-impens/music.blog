@@ -11,6 +11,25 @@
  * Perform actions to set up the site for this profile.
  */
 function music_install() {
+  // Create an omega subtheme.
+  if (module_exists('omega_tools')) {
+    // Enable the omega theme.
+    theme_enable(array('omega'));
+    // Create the subtheme.
+    $subtheme = new stdClass();
+    $subtheme->new = TRUE;
+    $subtheme->name = 'Music Blog';
+    $subtheme->machine_name = 'omega_music_blog';
+    $subtheme->starterkit = FALSE;
+    $subtheme->path = 'sites/all/themes/custom/' . $subtheme->machine_name;
+    $subtheme->base = 'omega';
+    $subtheme->default = TRUE;
+    $subtheme->status = TRUE;
+
+    omega_tools_subtheme_create($subtheme);
+    omega_tools_subtheme_process($subtheme);
+  }
+
   // Enable some standard blocks.
   $default_theme = variable_get('theme_default', 'bartik');
   $values = array(

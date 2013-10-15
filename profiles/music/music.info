@@ -26,6 +26,7 @@ dependencies[] = file
 dependencies[] = advagg
 dependencies[] = cdn
 dependencies[] = ctools
+dependencies[] = omega_tools
 dependencies[] = pathauto
 dependencies[] = token
 dependencies[] = transliteration
