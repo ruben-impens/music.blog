@@ -64,6 +64,12 @@ function music_install() {
   theme_enable(array('tao', 'rubik'));
   variable_set('admin_theme', 'rubik');
 
+  // Enable some modules.
+  $modules = array(
+    'feature_status',
+  );
+  module_enable($modules);
+
   // Allow visitor account creation, but with administrative approval.
   variable_set('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL);
 

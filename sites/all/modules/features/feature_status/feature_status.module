@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the feature_status feature.
+ */
+
+include_once 'feature_status.features.inc';

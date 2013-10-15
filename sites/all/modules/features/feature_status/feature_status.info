@@ -1,0 +1,10 @@
+name = feature_status
+core = 7.x
+package = Features
+dependencies[] = features
+dependencies[] = node
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_instance][] = node-status-body
+features[node][] = status
