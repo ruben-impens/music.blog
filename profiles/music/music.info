@@ -7,6 +7,7 @@ project = 'Music Blog'
 ; core
 dependencies[] = block
 dependencies[] = contextual
+dependencies[] = comment
 dependencies[] = help
 dependencies[] = image
 dependencies[] = list
