@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the feature_music_core feature.
+ */
+
+include_once 'feature_music_core.features.inc';
