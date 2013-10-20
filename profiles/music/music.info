@@ -29,6 +29,7 @@ dependencies[] = advagg
 dependencies[] = cdn
 dependencies[] = ctools
 dependencies[] = features
+dependencies[] = formblock
 dependencies[] = omega_tools
 dependencies[] = pathauto
 dependencies[] = token
