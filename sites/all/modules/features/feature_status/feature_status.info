@@ -18,6 +18,7 @@ features[variable][] = comment_form_location_status
 features[variable][] = comment_preview_status
 features[variable][] = comment_status
 features[variable][] = comment_subject_field_status
+features[variable][] = formblock_expose_status
 features[variable][] = menu_options_status
 features[variable][] = menu_parent_status
 features[variable][] = node_options_status
