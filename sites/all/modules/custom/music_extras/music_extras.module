@@ -5,6 +5,8 @@
  * Code for the music_extras module.
  */
 
+require_once 'includes/music_extras.helper.inc';
+
 /**
  * Implements hook_preprocess_page().
  */
@@ -17,4 +19,35 @@ function music_extras_preprocess_page(&$variables) {
       '#markup' => drupal_render($renderable_block),
     );
   }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function music_extras_token_info() {
+  $info['tokens']['user']['number-of-posts'] = array(
+    'name' => t('Number of posts'),
+    'description' => t('Number of posts by the current user.'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function music_extras_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  if ($type == 'user') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'number-of-posts':
+          $replacements[$original] = music_extras_number_of_posts();
+          break;
+      }
+    }
+  }
+
+  return $replacements;
 }
