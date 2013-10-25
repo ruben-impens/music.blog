@@ -33,6 +33,10 @@ function music_install() {
       omega_tools_subtheme_create($subtheme);
       omega_tools_subtheme_process($subtheme);
     }
+    else {
+      // Enable our subtheme.
+      theme_enable(array('omega', $subtheme_machine_name));
+    }
   }
 
   // Enable some standard blocks.
