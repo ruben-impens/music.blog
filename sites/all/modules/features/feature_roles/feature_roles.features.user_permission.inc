@@ -10,6 +10,13 @@
 function feature_roles_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access comments'.
+  $permissions['access comments'] = array(
+    'name' => 'access comments',
+    'roles' => array(),
+    'module' => 'comment',
+  );
+
   // Exported permission: 'access content'.
   $permissions['access content'] = array(
     'name' => 'access content',
