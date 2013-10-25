@@ -36,6 +36,7 @@ function music_install() {
     else {
       // Enable our subtheme.
       theme_enable(array('omega', $subtheme_machine_name));
+      variable_set('theme_default', $subtheme_machine_name);
     }
   }
 
