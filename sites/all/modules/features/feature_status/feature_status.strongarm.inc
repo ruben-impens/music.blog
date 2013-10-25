@@ -13,6 +13,20 @@ function feature_status_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'ant_pattern_status';
+  $strongarm->value = '[current-user:name]-[current-user:number-of-posts]';
+  $export['ant_pattern_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'ant_status';
+  $strongarm->value = '1';
+  $export['ant_status'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_status';
   $strongarm->value = 0;
   $export['comment_anonymous_status'] = $strongarm;
@@ -88,7 +102,8 @@ function feature_status_strongarm() {
   $strongarm->name = 'node_options_status';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'revision',
+    1 => 'promote',
+    2 => 'revision',
   );
   $export['node_options_status'] = $strongarm;
 
