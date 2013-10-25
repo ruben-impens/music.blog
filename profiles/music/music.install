@@ -66,8 +66,11 @@ function music_install() {
 
   // Enable some modules.
   $modules = array(
+    // Features
     'feature_music_core',
     'feature_status',
+    // Custom
+    'music_extras',
   );
   module_enable($modules);
 

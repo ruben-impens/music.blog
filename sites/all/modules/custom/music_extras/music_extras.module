@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Code for the music_extras module.
+ */
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function music_extras_preprocess_page(&$variables) {
+  // Add status block to the front page.
+  if (drupal_is_front_page()) {
+    $block = block_load('formblock', 'status');
+    $renderable_block =  _block_get_renderable_array(_block_render_blocks(array($block)));
+    $variables['page']['highlighted']['status_formblock'] = array(
+      '#markup' => drupal_render($renderable_block),
+    );
+  }
+}
