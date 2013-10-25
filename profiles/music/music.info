@@ -26,6 +26,7 @@ dependencies[] = file
 
 ; contrib
 dependencies[] = advagg
+dependencies[] = auto_nodetitle
 dependencies[] = cdn
 dependencies[] = ctools
 dependencies[] = features
