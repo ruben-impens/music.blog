@@ -79,6 +79,7 @@ function music_install() {
     // Features
     'feature_music_core',
     'feature_status',
+    'feature_roles',
     // Custom
     'music_extras',
   );
