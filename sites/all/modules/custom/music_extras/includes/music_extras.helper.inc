@@ -27,3 +27,16 @@ function music_extras_number_of_posts($account = NULL) {
     ->rowCount();
   return $count;
 }
+
+/**
+ * Get random placeholder text for the status body field.
+ */
+function music_extras_body_placeholder() {
+  $placeholder = db_select('music_extras_placeholders', 'mep')
+    ->fields('mep', array('placeholder'))
+    ->range(0, 1)
+    ->orderRandom()
+    ->execute()
+    ->fetchField();
+  return $placeholder;
+}

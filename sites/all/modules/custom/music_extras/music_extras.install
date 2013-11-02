@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the music extras module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function music_extras_install() {
+  // Insert default placeholders.
+  $placeholders = array(
+    'Not you again...',
+    'Holla at me dog!',
+    'Wasssuuuuuup?',
+  );
+  foreach ($placeholders as $placeholder) {
+    $record = new StdClass();
+    $record->placeholder = $placeholder;
+    drupal_write_record('music_extras_placeholders', $record);
+  }
+}
+
+/**
+ * Implements hook_schema().
+ */
+function music_extras_schema() {
+  $schema['music_extras_placeholders'] = array(
+    'description' => 'Holds music extras placeholders.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'Unique placeholder identifier.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'placeholder' => array(
+        'description' => 'Placeholder text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array(
+      'id',
+    ),
+  );
+  return $schema;
+}
