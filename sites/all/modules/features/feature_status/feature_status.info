@@ -27,4 +27,5 @@ features[variable][] = menu_parent_status
 features[variable][] = node_options_status
 features[variable][] = node_preview_status
 features[variable][] = node_submitted_status
+features[variable][] = nodeformscols_field_placements_status_default
 features[variable][] = pathauto_node_status_pattern
