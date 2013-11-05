@@ -14,7 +14,7 @@ function omega_music_blog_preprocess_textarea(&$variables) {
   $variables['element']['#resizable'] = FALSE;
 
   // Add a placeholder to the status node field.
-  if (isset($element['#bundle']) && $element['#bundle'] == 'status' && $element['#field_name'] == 'body') {
+  if (isset($element['#bundle']) && $element['#bundle'] == 'status' && $element['#field_name'] == 'field_body') {
     $variables['element']['#attributes']['placeholder'] = music_extras_body_placeholder();
   }
 }
