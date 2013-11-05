@@ -10,46 +10,42 @@
 function feature_status_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-status-body'
-  $field_instances['node-status-body'] = array(
+  // Exported field_instance: 'node-status-field_body'
+  $field_instances['node-status-field_body'] = array(
     'bundle' => 'status',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'body',
+    'field_name' => 'field_body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 1,
     'settings' => array(
-      'display_summary' => TRUE,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
+        'rows' => 1,
       ),
-      'type' => 'text_textarea_with_summary',
+      'type' => 'text_textarea',
       'weight' => 31,
     ),
   );
