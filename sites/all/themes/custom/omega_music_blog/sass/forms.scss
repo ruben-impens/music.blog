@@ -1,0 +1,24 @@
+textarea {
+  border: solid 1px #ddd;
+  padding: 5px;
+  resize: none;
+}
+
+fieldset.filter-wrapper {
+  display: none;
+}
+
+/* Status body field frontpage */
+
+#block-formblock-status {
+  .field-name-field-body {
+    textarea {
+      border-bottom: none;
+    }
+  }
+  .form-actions {
+    background: #eee;
+    border: solid 1px #ddd;
+    border-top: none;
+  }
+}

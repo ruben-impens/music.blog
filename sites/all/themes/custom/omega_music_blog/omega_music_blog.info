@@ -19,3 +19,8 @@ regions[footer] = 'Footer'
 zones[header] = 'Header'
 zones[content] = 'Content'
 zones[footer] = 'Footer'
+
+stylesheets[all][] = css/pages.css
+stylesheets[all][] = css/forms.css
+
+scripts[] = js/omega_music_blog.js
