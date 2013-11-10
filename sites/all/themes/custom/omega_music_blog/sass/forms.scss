@@ -12,6 +12,9 @@ fieldset.filter-wrapper {
 
 #block-formblock-status {
   .field-name-field-body {
+    label {
+      display: none;
+    }
     textarea {
       border-bottom: none;
     }
@@ -20,5 +23,6 @@ fieldset.filter-wrapper {
     background: #eee;
     border: solid 1px #ddd;
     border-top: none;
+    padding: 3px;
   }
 }

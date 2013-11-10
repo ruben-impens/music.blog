@@ -21,6 +21,8 @@ zones[content] = 'Content'
 zones[footer] = 'Footer'
 
 stylesheets[all][] = css/pages.css
+stylesheets[all][] = css/page-elements.css
 stylesheets[all][] = css/forms.css
+stylesheets[all][] = css/responsive.css
 
 scripts[] = js/omega_music_blog.js

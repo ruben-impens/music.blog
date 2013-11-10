@@ -9,6 +9,9 @@ fieldset.filter-wrapper {
 }
 
 /* Status body field frontpage */
+#block-formblock-status .field-name-field-body label {
+  display: none;
+}
 #block-formblock-status .field-name-field-body textarea {
   border-bottom: none;
 }
@@ -16,4 +19,5 @@ fieldset.filter-wrapper {
   background: #eee;
   border: solid 1px #dddddd;
   border-top: none;
+  padding: 3px;
 }

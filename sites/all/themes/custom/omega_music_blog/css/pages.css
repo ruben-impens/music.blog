@@ -3,6 +3,10 @@
 }
 
 body {
+  background: url('../images/grey.png?1346178886');
+}
+
+.l-page {
   margin: 0 auto;
-  width: 50%;
+  width: 960px;
 }
