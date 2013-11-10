@@ -2,8 +2,20 @@
   outline: none;
 }
 
+a {
+  color: #525252;
+}
+
+h1 {
+  font-weight: 300;
+}
+
 body {
   background: url('../images/grey.png?1346178886');
+  border-top: solid 5px #525252;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .l-page {

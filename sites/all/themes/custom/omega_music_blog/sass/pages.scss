@@ -1,9 +1,23 @@
+@import "base";
+
 * {
   outline: none;
 }
 
+a {
+  color: $default-grey;
+}
+
+h1 {
+  font-weight: 300;
+}
+
 body {
   background: image-url('grey.png');
+  border-top: solid 5px $default-grey;
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .l-page {
