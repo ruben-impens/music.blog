@@ -38,6 +38,7 @@ function music_extras_preprocess_page(&$variables) {
   // Add status block to the front page.
   if (drupal_is_front_page()) {
     $block = block_load('formblock', 'status');
+    $block->title = '<none>';
     $renderable_block =  _block_get_renderable_array(_block_render_blocks(array($block)));
     $status_formblock = array(
       'status_formblock' => array(
