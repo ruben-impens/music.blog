@@ -80,7 +80,7 @@ function feature_music_core_strongarm() {
     'omega_rebuild_theme_registry' => 0,
     'omega_rebuild_aggregates' => 0,
     'omega_browser_width_indicator' => 0,
-    'omega_livereload' => 1,
+    'omega_livereload' => 0,
     'omega_livereload_script' => 'http://localhost:35729/livereload.js',
     'omega_livereload_host' => 'localhost',
     'omega_livereload_port' => '35729',
