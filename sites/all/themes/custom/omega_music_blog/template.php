@@ -12,3 +12,4 @@
  */
 
 require_once 'preprocess/preprocess.forms.php';
+require_once 'preprocess/preprocess.page.php';
