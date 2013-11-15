@@ -25,4 +25,5 @@ stylesheets[all][] = css/page-elements.css
 stylesheets[all][] = css/forms.css
 stylesheets[all][] = css/responsive.css
 
+scripts[] = js/jquery.color.min.js
 scripts[] = js/omega_music_blog.js

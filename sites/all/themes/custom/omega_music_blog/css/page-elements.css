@@ -1,6 +1,25 @@
+.site-name {
+  font-size: 2.5em;
+}
 .site-name a {
   text-decoration: none;
 }
 .site-name span span {
-  color: #cc33cc;
+  color: #d1344e;
+}
+
+.messages {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-image: none;
+  font-size: .8em;
+  padding: 10px 15px;
+}
+
+.messages--error {
+  border-color: #d1344e;
+  color: #d1344e;
 }

@@ -1,13 +1,17 @@
 @import "base";
 
 textarea,
-input[type=text] {
+input[type=text],
+input[type=password] {
   @include border-radius(3px);
   @include box-shadow(inset 0 0 5px 1px #eee);
   border: solid 1px $drop-shadow;
   color: $default-grey;
   padding: 10px;
   resize: none;
+  &.error {
+    border: solid 1px $drop-shadow;
+  }
 }
 
 fieldset.filter-wrapper {
@@ -25,7 +29,7 @@ fieldset.filter-wrapper {
   height: 35px;
   line-height: 1;
   margin: 0;
-  padding: 10px 20px;
+  padding: 0 20px;
 }
 
 /* Status body field frontpage */

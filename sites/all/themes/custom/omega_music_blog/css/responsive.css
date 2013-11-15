@@ -1,4 +1,8 @@
 @media (max-width: 960px) {
+  body {
+    padding: 0 20px;
+  }
+
   .l-page {
     width: 100%;
   }
