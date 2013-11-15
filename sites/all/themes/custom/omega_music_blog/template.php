@@ -13,3 +13,11 @@
 
 require_once 'preprocess/preprocess.forms.php';
 require_once 'preprocess/preprocess.page.php';
+
+/**
+ * Returns HTML for a feed icon.
+ */
+function omega_music_blog_feed_icon($variables) {
+  $text = t('Subscribe to !feed-title', array('!feed-title' => $variables['title']));
+  return l('', $variables['url'], array('attributes' => array('class' => array('fa', 'fa-rss'), 'title' => $text)));
+}
