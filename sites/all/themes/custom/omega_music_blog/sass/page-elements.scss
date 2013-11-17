@@ -22,3 +22,13 @@
   border-color: $accent;
   color: $accent;
 }
+
+.fa-square-o,
+.fa-check-square-o,
+.fa-circle-o,
+.fa-dot-circle-o {
+  &:before {
+    display: inline-block;
+    width: 20px;
+  }
+}

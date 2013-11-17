@@ -12,11 +12,21 @@
         }
       });
       // Form submit hover.
-      var submit = $('.form-submit');
+      var submit = $('.form-submit', context);
       submit.hover(function() {
         $(this).animate({'backgroundColor': '#d1344e'}, 100);
       }, function() {
         $(this).animate({'backgroundColor': '#525252'}, 'fast');
+      });
+      // Toggle checkbox label classes.
+      var checkboxLabels = $('.form-type-checkbox label', context);
+      checkboxLabels.click(function() {
+        $(this).toggleClass('fa-square-o').toggleClass('fa-check-square-o');
+      });
+      // Toggle radio label classes.
+      var radioLabels = $('.form-type-radio label', context);
+      radioLabels.click(function() {
+        $(this).closest('.form-radios').find('label').toggleClass('fa-circle-o').toggleClass('fa-dot-circle-o');
       });
     }
   };

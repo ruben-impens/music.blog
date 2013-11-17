@@ -23,3 +23,11 @@
   border-color: #d1344e;
   color: #d1344e;
 }
+
+.fa-square-o:before,
+.fa-check-square-o:before,
+.fa-circle-o:before,
+.fa-dot-circle-o:before {
+  display: inline-block;
+  width: 20px;
+}

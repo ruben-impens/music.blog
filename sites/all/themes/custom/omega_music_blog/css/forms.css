@@ -20,6 +20,11 @@ input[type=password].error {
   border: solid 1px #dddddd;
 }
 
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+}
+
 fieldset.filter-wrapper {
   display: none;
 }
