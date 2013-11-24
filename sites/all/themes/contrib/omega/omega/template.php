@@ -261,15 +261,13 @@ function omega_css_alter(&$css) {
   }
 
   // Exclude CSS files as declared in the theme settings.
-  if (omega_extension_enabled('assets') && $regex = omega_theme_get_setting('omega_css_exclude_regex')) {
-    // Make sure that RTL styles are excluded as well when a file name has been
-    // specified with it's full .css file extension.
-    $regex = preg_replace('/\\\.css$/', '(\.css|-rtl\.css)', $regex);
-    omega_exclude_assets($css, $regex);
+  if (omega_extension_enabled('assets')) {
+    omega_css_js_alter($css, 'css');
   }
 
   // Allow themes to specify no-query fallback CSS files.
-  $mapping = omega_generate_asset_mapping($css);
+  require_once "$omega/includes/assets.inc";
+  $mapping = omega_assets_generate_mapping($css);
   foreach (preg_grep('/\.no-query(-rtl)?\.css$/', $mapping) as $key => $fallback) {
     // Don't modify browser settings if they have already been modified.
     if ($css[$key]['browsers']['IE'] === TRUE && $css[$key]['browsers']['!IE'] === TRUE) {
@@ -288,6 +286,14 @@ function omega_css_alter(&$css) {
  * Implements hook_js_alter().
  */
 function omega_js_alter(&$js) {
+  // In some cases the element info array might get built before the theme
+  // system is fully bootstrapped. In this case, omega_element_info_alter() will
+  // never get called causing custom Omega pre-rendering of scripts to be
+  // skipped which results in no JavaScript being output.
+  if (!element_info('scripts')) {
+    drupal_static_reset('element_info');
+  }
+
   // If the AJAX.js isn't included... we don't need the ajaxPageState settings!
   if (!isset($js['misc/ajax.js']) && isset($js['settings']['data'])) {
     foreach ($js['settings']['data'] as $delta => $setting) {
@@ -306,16 +312,23 @@ function omega_js_alter(&$js) {
     return;
   }
 
-  if ($regex = omega_theme_get_setting('omega_js_exclude_regex')) {
-    omega_exclude_assets($js, $regex);
-  }
+  omega_css_js_alter($js, 'js');
 
   // Move the specified JavaScript files to the footer.
   if (($footer = omega_theme_get_setting('omega_js_footer')) && is_array($footer)) {
-    $regex = omega_generate_path_regex($footer);
-    $mapping = omega_generate_asset_mapping($js);
+    require_once drupal_get_path('theme', 'omega') . '/includes/assets.inc';
+    if (!$cache = cache_get("omega:{$GLOBALS['theme_key']}:footer")) {
+      // Explode and trim the values for the footer rules.
+      $steps = omega_assets_regex_steps($footer);
 
-    foreach (preg_grep($regex, $mapping) as $key => $match) {
+      cache_set("omega:{$GLOBALS['theme_key']}:footer", $steps, 'cache', CACHE_TEMPORARY);
+    }
+    else {
+      $steps = $cache->data;
+    }
+
+    $mapping = omega_assets_generate_mapping($js);
+    foreach (omega_assets_regex_execute($mapping, $steps) as $key => $match) {
       $js[$key]['scope'] = 'footer';
     }
   }
@@ -707,12 +720,12 @@ function omega_omega_theme_libraries_info() {
     'package' => t('Polyfills'),
     'files' => array(
       'js' => array(
-        'html5shiv.js' => array(
+        'html5shiv.min.js' => array(
           'browsers' => array('IE' => '(gte IE 6)&(lte IE 8)', '!IE' => FALSE),
           'weight' => 100,
           'every_page' => TRUE,
         ),
-        'html5shiv-printshiv.js' => array(
+        'html5shiv-printshiv.min.js' => array(
           'browsers' => array('IE' => '(gte IE 6)&(lte IE 8)', '!IE' => FALSE),
           'weight' => 100,
           'every_page' => TRUE,
@@ -725,12 +738,12 @@ function omega_omega_theme_libraries_info() {
         'description' => t('During development it might be useful to include the source files instead of the minified version.'),
         'files' => array(
           'js' => array(
-            'html5shiv.min.js' => array(
+            'html5shiv.js' => array(
               'browsers' => array('IE' => '(gte IE 6)&(lte IE 8)', '!IE' => FALSE),
               'weight' => 100,
               'every_page' => TRUE,
             ),
-            'html5shiv-printshiv.min.js' => array(
+            'html5shiv-printshiv.js' => array(
               'browsers' => array('IE' => '(gte IE 6)&(lte IE 8)', '!IE' => FALSE),
               'weight' => 100,
               'every_page' => TRUE,

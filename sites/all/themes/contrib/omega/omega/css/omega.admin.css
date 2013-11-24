@@ -21,6 +21,24 @@ div.vertical-tabs .vertical-tabs-panes .vertical-tabs-pane fieldset legend {
   display: block;
 }
 
+ul.omega-assets-namespace-tokens .description {
+  margin-top: 0;
+}
+.item-list ul.omega-assets-namespace-tokens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.item-list ul.omega-assets-namespace-tokens li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+}
+.item-list ul.omega-assets-namespace-tokens li {
+  margin-bottom: 14px;
+}
+
 .omega-assets-missing-files {
   color: #8c2e0b;
   margin: 1em 0 1em 1.5em;

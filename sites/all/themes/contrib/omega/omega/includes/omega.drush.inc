@@ -26,7 +26,7 @@ function omega_drush_command() {
       'enable' => dt('Automatically enable the subtheme after creation.'),
       'set-default' => dt('Automatically enable the subtheme after creation and make it the default theme.'),
       'no-readme' => dt('Skips readme files when generating the subtheme.'),
-      'no-libraries' => dt("Prevent execution of the theme's libraries.make file."),
+      'with-libraries' => dt("Execute the libraries.make file upon completion."),
     ),
     'examples' => array(
       'drush omega-subtheme "My Theme"' => dt('Creates an Omega subtheme called "My Theme".'),
@@ -291,7 +291,7 @@ function drush_omega_subtheme($name) {
   }
 
   // Execute the theme's libraries.make file unless disabled.
-  if (!drush_get_option('no-libraries') && is_file("$destination/libraries.make")) {
+  if (drush_get_option('with-libraries') && is_file("$destination/libraries.make")) {
     drush_op('chdir', $destination);
     drush_invoke_process('@self', 'make', array('libraries.make'), array(
       'no-core' => TRUE,
@@ -334,7 +334,8 @@ function drush_omega_wizard() {
   drush_set_option('basetheme', $basetheme);
 
   // Let the user choose a starterkit.
-  if (!$starterkit = drush_omega_starterkit_choice($basetheme, dt('Please choose a starterkit for your new theme'))) {
+  $starterkits = omega_discovery('starterkit', $basetheme);
+  if (!$starterkit = drush_omega_starterkit_choice($starterkits, dt('Please choose a starterkit for your new theme'))) {
     return;
   }
   drush_set_option('starterkit', $starterkit);
@@ -353,6 +354,11 @@ function drush_omega_wizard() {
     drush_set_option('set-default', drush_confirm(dt('Do you want to make your new theme the default theme?')));
   }
   drush_set_option('enable', $enable);
+
+  // Finally, let the user decide whether he/she wants to download the libraries directly.
+  if (is_file("{$starterkits[$starterkit]['path']}/libraries.make")) {
+    drush_set_option('with-libraries', drush_confirm(dt('Do you want to download the libraries defined in libraries.make now?')));
+  }
 
   drush_invoke('omega-subtheme', $name);
 }
@@ -393,16 +399,16 @@ function drush_omega_export($theme = NULL) {
   // Parse the current content of the .info file so we can append the settings
   // from the database.
   $path = drupal_get_path('theme', $theme) . '/' . $theme . '.info';
-  $data = file_get_contents($path);
+  $info = drupal_parse_info_file($path);
 
-  // Remove the old theme settings from the .info file.
-  $data = trim(preg_replace('/^settings\[.*\].*\n?/mi', '', $data));
-
-  // Append the exported theme settings to the .info file if there are any.
-  $data = $settings ? $data . "\n\n" . drush_omega_compose_info_file($settings, 'settings') : $data;
+  unset($info['settings']);
+  if (!empty($settings)) {
+    // Append the exported theme settings to the .info file if there are any.
+    $info['settings'] = $settings;
+  }
 
   // Write the data to the .info file of the theme.
-  if (drush_op('file_put_contents', $path, $data)) {
+  if (drush_op('file_put_contents', $path, drush_omega_compose_info_file($info))) {
     drush_log(dt('The theme settings for the @theme theme have been exported to the .info file of the theme.', array('@theme' => $themes[$theme]->info['name'])), 'success');
 
     if (drush_get_option('revert')) {
@@ -691,8 +697,8 @@ function drush_omega_theme_choice($message) {
 /**
  * Helper function for printing a list of available starterkits.
  *
- * @param string $basetheme
- *   The machine-readable name of a basetheme.
+ * @param array $starterkits
+ *   An array of starterkits.
  * @param string $message
  *   The message that should be displayed.
  *
@@ -700,10 +706,10 @@ function drush_omega_theme_choice($message) {
  *   The machine-readable name of the chosen starterkit or FALSE if the
  *   operation was cancelled.
  */
-function drush_omega_starterkit_choice($basetheme, $message) {
+function drush_omega_starterkit_choice($starterkits, $message) {
   $themes = list_themes();
   $options = array();
-  foreach (omega_discovery('starterkit', $basetheme) as $key => $info) {
+  foreach ($starterkits as $key => $info) {
     $options[$key] = dt('@name: !description (Provided by @provider)', array(
       '@name' => $info['info']['name'],
       '!description' => isset($info['info']['description']) ? $info['info']['description'] : dt('No description'),
@@ -882,6 +888,9 @@ function drush_omega_rewrite_recursive($path, $search, $replace) {
 /**
  * Recursively builds an .info file structure from an array.
  *
+ * This function will take the current theme information, and create the export
+ * based upon the current info file and settings saved within the database.
+ *
  * @param array $array
  *   The array to build the .info file from.
  * @param string|bool $prefix
@@ -889,28 +898,29 @@ function drush_omega_rewrite_recursive($path, $search, $replace) {
  *   for the keys. Defaults to NULL.
  *
  * @return string
- *   A .info file string.
+ *   The full, prettified .info file.
  */
-function drush_omega_compose_info_file($array, $prefix = NULL) {
+function drush_omega_compose_info_file($array, $prefix = '') {
   $info = '';
-
+  $incremental = !empty($array) && strval(key($array)) === '0' && array_keys($array) === range(0, count($array) - 1);
   foreach ($array as $key => $value) {
     if (is_array($value)) {
-      // This is an array, let's proceed with the next level.
-      $info .= drush_omega_compose_info_file($value, (!$prefix ? $key : "{$prefix}[{$key}]"));
+      if (empty($prefix)) {
+        $region = ucwords(strtr($key, array('_' => ' ')));
+        $info .= "\n";
+        $info .= "; ========================================\n";
+        $info .= "; $region\n";
+        $info .= "; ========================================\n";
+      }
+
+      $info .= drush_omega_compose_info_file($value, (empty($prefix) ? $key : "{$prefix}[{$key}]"));
     }
     else {
-      // Escape all single quotes.
+      $key = $incremental ? '' : $key;
       $value = str_replace("'", "\'", $value);
-      // Wrap the value in single quotes if it has any trailing or leading
-      // whitespace or it is an empty string from the start.
-      $value = $value === '' || trim($value) != $value ? "'" . $value . "'" : $value;
-      // If the key is numeric remove it entirely (simple brackets are enough in
-      // this case).
-      $key = is_numeric($key) ? '' : $key;
-
+      $value = strval($value) === '' ? '"' . $value . '"' : $value;
       $info .= $prefix ? ("{$prefix}[$key]") : $key;
-      $info .= ' = ' . $value . "\n";
+      $info .= " = $value\n";
     }
   }
 
