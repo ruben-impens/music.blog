@@ -41,4 +41,4 @@ dependencies[] = omega_tools
 dependencies[] = pathauto
 dependencies[] = token
 dependencies[] = transliteration
-dependencies[] = views
+dependencies[] = views_ui

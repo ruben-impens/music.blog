@@ -70,6 +70,9 @@
  * @see omega_preprocess_page()
  */
 ?>
+<div class="l-top-bar">
+  <?php print render($page['top_bar']); ?>
+</div>
 <div class="l-page">
   <header class="l-header" role="banner">
     <div class="l-branding">
