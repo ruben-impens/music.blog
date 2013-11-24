@@ -1,5 +1,5 @@
 .site-name {
-  font-size: 2.5em;
+  font-size: 4rem;
 }
 .site-name a {
   text-decoration: none;
@@ -15,8 +15,7 @@
   -o-border-radius: 3px;
   border-radius: 3px;
   background-image: none;
-  font-size: .8em;
-  padding: 10px 15px;
+  padding: 1rem 1.5rem;
 }
 
 .messages--error {
@@ -24,10 +23,18 @@
   color: #d1344e;
 }
 
+.vertical-tabs {
+  background: white;
+}
+
+.vertical-tabs-panes {
+  padding: 1rem 0;
+}
+
 .fa-square-o:before,
 .fa-check-square-o:before,
 .fa-circle-o:before,
 .fa-dot-circle-o:before {
   display: inline-block;
-  width: 20px;
+  width: 2rem;
 }

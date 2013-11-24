@@ -12,6 +12,10 @@
   outline: none;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 a {
   color: #525252;
 }
@@ -23,7 +27,8 @@ h1 {
 body {
   background: url('../images/grey.png?1346178886');
   border-top: solid 5px #525252;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 1.4rem;
   margin: 0;
   padding: 0;
 }

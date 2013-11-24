@@ -20,6 +20,12 @@ input[type=password].error {
   border: solid 1px #dddddd;
 }
 
+.form-disabled textarea,
+.form-disabled input[type=text],
+.form-disabled input[type=password] {
+  background-color: #fafafa;
+}
+
 input[type=checkbox],
 input[type=radio] {
   display: none;
@@ -47,7 +53,25 @@ fieldset.filter-wrapper {
   padding: 0 20px;
 }
 
-/* Status body field frontpage */
+html.js .form-autocomplete {
+  background-image: none;
+}
+
+.autocomplete-wrapper {
+  position: relative;
+}
+.autocomplete-wrapper i {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.3rem;
+}
+.autocomplete-wrapper i.fa-refresh {
+  color: #dddddd;
+}
+.autocomplete-wrapper i.fa-refresh.fa-spin {
+  color: #525252;
+}
+
 #block-formblock-status .field-name-field-body {
   float: left;
   margin-bottom: 1em;

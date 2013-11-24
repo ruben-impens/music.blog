@@ -1,7 +1,7 @@
 @import "base";
 
 .site-name {
-  font-size: 2.5em;
+  font-size: 4rem;
   a {
     text-decoration: none;
   }
@@ -15,13 +15,21 @@
 .messages {
   @include border-radius(3px);
   background-image: none;
-  font-size: .8em;
-  padding: 10px 15px;
+  padding: 1rem 1.5rem;
 }
 .messages--error {
   border-color: $accent;
   color: $accent;
 }
+
+.vertical-tabs {
+  background: $white;
+}
+.vertical-tabs-panes {
+  padding: 1rem 0;
+}
+
+// Font Awesome
 
 .fa-square-o,
 .fa-check-square-o,
@@ -29,6 +37,6 @@
 .fa-dot-circle-o {
   &:before {
     display: inline-block;
-    width: 20px;
+    width: 2rem;
   }
 }

@@ -5,7 +5,9 @@ $accent: #d1344e;
 
 $drop-shadow: #ddd;
 
-// Fonts
+// Font-size
+$base-font-size: 10px;
+// Font-family
 $open-sans: "Open Sans", Helvetica, sans-serif;
 
 @import "compass/support";  // Add Compass' IE and vendor prefix support variables.

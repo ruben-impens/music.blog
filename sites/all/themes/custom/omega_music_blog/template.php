@@ -51,14 +51,16 @@ function omega_music_blog_form_element_label($variables) {
     $attributes['class'] = 'element-invisible';
   }
 
-  // Add fontawesome classes.
-  $attributes['class'] .= ' fa';
+  // Add fontawesome icons.
+  $icon = '';
   if ($element['#type'] == 'checkbox') {
-    $attributes['class'] .= $element['#checked'] ? ' fa-check-square-o' : ' fa-square-o';
+    $class = $element['#checked'] ? 'fa-check-square-o' : 'fa-square-o';
+    $icon = '<i class="fa ' . $class . '"></i>';
   }
   elseif ($element['#type'] == 'radio') {
     $radio_checked = $element['#return_value'] == $element['#default_value'];
-    $attributes['class'] .= $radio_checked ? ' fa-dot-circle-o' : ' fa-circle-o';
+    $class = $radio_checked ? ' fa-dot-circle-o' : ' fa-circle-o';
+    $icon = '<i class="fa ' . $class . '"></i>';
   }
 
   if (!empty($element['#id'])) {
@@ -66,5 +68,38 @@ function omega_music_blog_form_element_label($variables) {
   }
 
   // The leading whitespace helps visually separate fields from inline labels.
-  return ' <label' . drupal_attributes($attributes) . '>' . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+  return ' <label' . drupal_attributes($attributes) . '>' . $icon . $t('!title !required', array('!title' => $title, '!required' => $required)) . "</label>\n";
+}
+
+/**
+ * Returns HTML for a textfield form element.
+ */
+function omega_music_blog_textfield($variables) {
+  $element = $variables['element'];
+  $element['#attributes']['type'] = 'text';
+  element_set_attributes($element, array('id', 'name', 'value', 'size', 'maxlength'));
+  _form_set_class($element, array('form-text'));
+
+  $extra = '';
+  if ($element['#autocomplete_path'] && drupal_valid_path($element['#autocomplete_path'])) {
+    drupal_add_library('system', 'drupal.autocomplete');
+    $element['#attributes']['class'][] = 'form-autocomplete';
+
+    $attributes = array();
+    $attributes['type'] = 'hidden';
+    $attributes['id'] = $element['#attributes']['id'] . '-autocomplete';
+    $attributes['value'] = url($element['#autocomplete_path'], array('absolute' => TRUE));
+    $attributes['disabled'] = 'disabled';
+    $attributes['class'][] = 'autocomplete';
+    $extra = '<input' . drupal_attributes($attributes) . ' />';
+  }
+  $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
+
+  // Change markup for autocomplete textfields.
+  if (isset($element['#autocomplete_path']) && $element['#autocomplete_path']) {
+    $icon = '<i class="fa fa-refresh"></i>';
+    $output = '<div class="autocomplete-wrapper">' . $output . $icon . '</div>';
+  }
+
+  return $output . $extra;
 }

@@ -13,6 +13,10 @@
   outline: none;
 }
 
+html {
+  font-size: 100% * ($base-font-size / 16px);
+}
+
 a {
   color: $default-grey;
 }
@@ -24,7 +28,8 @@ h1 {
 body {
   background: image-url('grey.png');
   border-top: solid 5px $default-grey;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $open-sans;
+  font-size: 1.4rem;
   margin: 0;
   padding: 0;
 }
