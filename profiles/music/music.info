@@ -35,6 +35,7 @@ dependencies[] = fontyourface
 dependencies[] = fontyourface_ui
 dependencies[] = formblock
 dependencies[] = google_fonts_api
+dependencies[] = jquery_update
 dependencies[] = libraries
 dependencies[] = nodeformcols
 dependencies[] = omega_tools
