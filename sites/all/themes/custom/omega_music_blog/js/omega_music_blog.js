@@ -49,6 +49,17 @@
       radioLabels.click(function() {
         $(this).closest('.form-radios').find('label').find('i').toggleClass('fa-circle-o').toggleClass('fa-dot-circle-o');
       });
+
+      // Toggle top bar.
+      var topBar = $('.l-top-bar', context);
+      var topBarContent = $('.l-top-bar-content', context);
+      var topBarToggle = $('.l-top-bar-expand .expand i', context);
+      topBarToggle.click(function() {
+        var opacity = topBarContent.is(':visible') ? 0 : 1;
+        topBarContent.animate({'opacity': opacity}, 500);
+        topBar.slideToggle('fast');
+        $(this).toggleClass('fa-arrow-circle-down').toggleClass('fa-arrow-circle-up');
+      });
     }
   };
 })(jQuery);

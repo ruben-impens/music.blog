@@ -24,16 +24,73 @@ h1 {
   font-weight: 300;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: url('../images/grey.png?1346178886');
-  border-top: solid 5px #525252;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 1.4rem;
   margin: 0;
   padding: 0;
 }
 
+.l-top-bar {
+  background: #525252;
+  display: none;
+  font-size: 1.2rem;
+  padding: 0.8rem 0 0.3rem 0;
+}
+.l-top-bar ul li {
+  display: inline-block;
+}
+.l-top-bar ul li a {
+  color: white;
+  display: block;
+  margin-left: 1.5rem;
+  text-decoration: none;
+}
+.l-top-bar ul li.leaf {
+  list-style: none;
+}
+.l-top-bar ul li.first a {
+  margin-left: 0;
+}
+.l-top-bar .l-top-bar-content {
+  margin: 0 auto;
+  opacity: 0;
+  overflow: hidden;
+  width: 96rem;
+}
+.l-top-bar .block--system-user-menu {
+  float: right;
+}
+
+.l-top-bar-expand {
+  border-top: solid 0.5rem #525252;
+}
+.l-top-bar-expand .expand {
+  line-height: 1;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 96rem;
+}
+.l-top-bar-expand .expand i {
+  -webkit-border-radius: 0 0 0.3rem 0.3rem;
+  -moz-border-radius: 0 0 0.3rem 0.3rem;
+  -ms-border-radius: 0 0 0.3rem 0.3rem;
+  -o-border-radius: 0 0 0.3rem 0.3rem;
+  border-radius: 0 0 0.3rem 0.3rem;
+  background: #525252;
+  color: white;
+  cursor: pointer;
+  float: right;
+  padding: 0 0.4rem 0.3rem 0.4rem;
+}
+
 .l-page {
   margin: 0 auto;
-  width: 960px;
+  width: 96rem;
 }

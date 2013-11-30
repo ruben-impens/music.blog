@@ -71,17 +71,17 @@
  */
 ?>
 <?php if (user_is_logged_in()): ?>
-  <div class="l-top-bar">
-    <div class="l-top-bar-content">
-      <?php print render($page['top_bar']); ?>
-    </div>
+<div class="l-top-bar">
+  <div class="l-top-bar-content">
+    <?php print render($page['top_bar']); ?>
   </div>
+</div>
+<div class="l-top-bar-expand">
+  <div class="expand">
+    <?php print $top_bar_expand; ?>
+  </div>
+</div>
 <?php endif; ?>
-  <div class="l-top-bar-expand">
-    <div class="expand">
-      <?php print $top_bar_expand; ?>
-    </div>
-  </div>
 <div class="l-page">
   <header class="l-header" role="banner">
     <div class="l-branding">
@@ -114,6 +114,9 @@
       <?php print $breadcrumb; ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
+      <?php if ($title): ?>
+        <h1><?php print $title; ?></h1>
+      <?php endif; ?>
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php print render($tabs); ?>

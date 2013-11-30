@@ -25,16 +25,73 @@ h1 {
   font-weight: 300;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: image-url('grey.png');
-  border-top: solid 5px $default-grey;
   font-family: $open-sans;
   font-size: 1.4rem;
   margin: 0;
   padding: 0;
 }
 
+.l-top-bar {
+  background: $default-grey;
+  display: none;
+  font-size: 1.2rem;
+  padding: .8rem 0 .3rem 0;
+  ul {
+    li {
+      display: inline-block;
+      a {
+        color: $white;
+        display: block;
+        margin-left: 1.5rem;
+        text-decoration: none;
+      }
+      &.leaf {
+        list-style: none;
+      }
+      &.first {
+        a {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+  .l-top-bar-content {
+    margin: 0 auto;
+    opacity: 0;
+    overflow: hidden;
+    width: $default-width;
+  }
+  .block--system-user-menu {
+    float: right;
+  }
+}
+
+.l-top-bar-expand {
+  border-top: solid .5rem $default-grey;
+  .expand {
+    line-height: 1;
+    margin: 0 auto;
+    overflow: hidden;
+    width: $default-width;
+    i {
+      @include border-radius(0 0 .3rem .3rem);
+      background: $default-grey;
+      color: $white;
+      cursor: pointer;
+      float: right;
+      padding: 0 .4rem .3rem .4rem;
+    }
+  }
+}
+
 .l-page {
   margin: 0 auto;
-  width: 960px;
+  width: $default-width;
 }

@@ -1,5 +1,10 @@
 @import "base";
 
+.form-textarea-wrapper {
+  @include border-radius(3px);
+  border-bottom: solid 1px $white;
+}
+
 textarea,
 input[type=text],
 input[type=password] {
