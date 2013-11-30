@@ -77,11 +77,13 @@
     </div>
   </div>
 <?php endif; ?>
-  <div class="l-top-bar-expand">
+<div class="l-top-bar-expand">
+  <?php if (isset($top_bar_expand)): ?>
     <div class="expand">
       <?php print $top_bar_expand; ?>
     </div>
-  </div>
+  <?php endif; ?>
+</div>
 <div class="l-page">
   <header class="l-header" role="banner">
     <div class="l-branding">
