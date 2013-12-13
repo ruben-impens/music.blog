@@ -35,8 +35,10 @@ function music_extras_menu() {
  * Implements hook_preprocess_page().
  */
 function music_extras_preprocess_page(&$variables) {
-  // Add user menu on non-admin pages.
   if (!path_is_admin(current_path())) {
+    // Add soundcloud sdk.
+    drupal_add_js('http://connect.soundcloud.com/sdk.js', 'external');
+    // Add user menu on non-admin pages.
     $variables['page']['top_bar']['system-user-menu'] = music_extras_render_block('system', 'user-menu');
   }
   // Add status block to the front page.

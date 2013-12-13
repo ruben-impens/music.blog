@@ -31,6 +31,7 @@ ul {
 
 body {
   background: url('../images/grey.png?1346178886');
+  color: #525252;
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 1.4rem;
   margin: 0;
@@ -93,4 +94,20 @@ body {
 .l-page {
   margin: 0 auto;
   width: 96rem;
+}
+
+/* Media */
+#media-rendered {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  border: solid 1px #dddddd;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+#media-rendered iframe {
+  display: block;
 }

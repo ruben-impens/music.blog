@@ -32,6 +32,7 @@ ul {
 
 body {
   background: image-url('grey.png');
+  color: $default-grey;
   font-family: $open-sans;
   font-size: 1.4rem;
   margin: 0;
@@ -94,4 +95,17 @@ body {
 .l-page {
   margin: 0 auto;
   width: $default-width;
+}
+
+/* Media */
+
+#media-rendered {
+  @include border-radius(3px);
+  background: #fff;
+  border: solid 1px $drop-shadow;
+  padding: 1rem;
+  margin-top: 1rem;
+  iframe {
+    display: block;
+  }
 }
