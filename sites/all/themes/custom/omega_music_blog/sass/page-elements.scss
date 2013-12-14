@@ -12,6 +12,8 @@
   }
 }
 
+// Messages
+
 .messages {
   @include border-radius(3px);
   background-image: none;
@@ -20,6 +22,31 @@
 .messages--error {
   border-color: $accent;
   color: $accent;
+}
+
+// Tabs & Vertical tabs
+
+.tabs {
+  &.tabs--primary {
+    border: none;
+  }
+  &.links--inline {
+    li {
+      margin-right: .5rem;
+    }
+  }
+  a {
+    @include border-radius(3px);
+    background: $default-grey;
+    color: $white;
+    font-size: 1.2rem;
+    &.active {
+      background: $accent;
+    }
+    &:hover {
+      background: $accent;
+    }
+  }
 }
 
 .vertical-tabs {

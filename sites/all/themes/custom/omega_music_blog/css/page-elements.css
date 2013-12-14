@@ -23,6 +23,29 @@
   color: #d1344e;
 }
 
+.tabs.tabs--primary {
+  border: none;
+}
+.tabs.links--inline li {
+  margin-right: .5rem;
+}
+.tabs a {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background: #525252;
+  color: white;
+  font-size: 1.2rem;
+}
+.tabs a.active {
+  background: #d1344e;
+}
+.tabs a:hover {
+  background: #d1344e;
+}
+
 .vertical-tabs {
   background: white;
 }
