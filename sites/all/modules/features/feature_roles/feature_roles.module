@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the feature_roles feature.
  */
+
+include_once 'feature_roles.features.inc';
