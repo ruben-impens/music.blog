@@ -44,6 +44,7 @@ function music_extras_preprocess_page(&$variables) {
   // Add status block to the front page.
   if (drupal_is_front_page()) {
     $variables['page']['content']['formblock-status'] = music_extras_render_block('formblock', 'status');
+    $variables['page']['content']['status-updates'] = music_extras_render_block('views', 'status_updates-block');
   }
 }
 
@@ -59,6 +60,7 @@ function music_extras_preprocess_page(&$variables) {
 function music_extras_render_block($module, $delta, $title = FALSE) {
   $block = block_load($module, $delta);
   $block->title = $title ? t($title) : '<none>';
+  $block->region = 'none';
   $renderable_block =  _block_get_renderable_array(_block_render_blocks(array($block)));
   $rendered_block = array(
     '#markup' => drupal_render($renderable_block),
