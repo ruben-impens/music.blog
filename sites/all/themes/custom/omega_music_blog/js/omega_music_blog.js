@@ -19,6 +19,13 @@
   }
   Drupal.behaviors.omegaMusicBlog = {
     attach: function (context, settings) {
+      // Open all external links in a new window/tab.
+      $('a').each(function() {
+        var obj = this;
+        if (obj.hostname != document.location.hostname) {
+          obj.target = '_blank';
+        }
+      });
       // Expand status body field on focus.
       var bodyField = $('#block-formblock-status .field-name-field-body textarea', context);
       var defaultValue = bodyField.val();
