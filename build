@@ -1,2 +1,2 @@
 #!/bin/bash
-drush si music --account-pass=admin --site-name=music.blog --site-mail=r.impens@gmail.com --db-url=mysql://root:root@localhost/music_blog -y -v && drush fra -y
+drush si music --account-pass=admin --site-name=music.blog --site-mail=r.impens@gmail.com --db-url=mysql://root:root@localhost/music_blog -y -v && drush fra -y && drush omega-revert omega_music_blog
