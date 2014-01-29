@@ -7,3 +7,10 @@
     width: 100%;
   }
 }
+@media (max-width: 640px) {
+  #block-formblock-status .field-name-field-body,
+  #block-formblock-status .form-actions {
+    margin-bottom: .5rem;
+    width: 100%;
+  }
+}
