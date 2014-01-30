@@ -132,26 +132,55 @@
   function renderMedia(mediaType, obj) {
     var html = '<div id="media-rendered"></div>';
     $(html).appendTo(obj.closest('.form-textarea-wrapper:not(.media-found)'));
-    // Cache media regular expressions.
-    var youTubeReg = /(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/;
-    var soundcloudReg = /((http:\/\/(soundcloud\.com\/.*|soundcloud\.com\/.*\/.*|soundcloud\.com\/.*\/sets\/.*|soundcloud\.com\/groups\/.*|snd\.sc\/.*))|(https:\/\/(soundcloud\.com\/.*|soundcloud\.com\/.*\/.*|soundcloud\.com\/.*\/sets\/.*|soundcloud\.com\/groups\/.*)))/i;
-    var vimeoReg = /(http:\/\/|https:\/\/)?(www\.)?(vimeo\.com\/)([0-9]+)/;
     switch (mediaType) {
       case 'youtube':
-        var youTubeVideoID = obj.val().match(youTubeReg);
-        var embed = '<iframe width="350" height="197" src="//www.youtube.com/embed/' + youTubeVideoID[1] + '" frameborder="0" allowfullscreen></iframe>';
+        renderYouTube(obj);
         break;
       case 'soundcloud':
-        var soundcloudURL = obj.val().match(soundcloudReg);
-        // Initialize soundcloud app (http://soundcloud.com/you/apps).
-        SC.initialize({
-          client_id: Drupal.settings.musicExtras.soundcloudClientId
-        });
-        SC.oEmbed(soundcloudURL[1], {color: "d1344e"},  document.getElementById("media-rendered"));
+        renderSoundcloud(obj);
         break;
       case 'vimeo':
+        renderVimeo(obj);
         break;
     }
+  }
+
+  /**
+   * Render YouTube Media.
+   *
+   * @param obj
+   *   The textarea object beneath which we will render the media.
+   */
+  function renderYouTube(obj) {
+    var youTubeReg = /(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/;
+    var youTubeVideoID = obj.val().match(youTubeReg);
+    var embed = '<iframe width="350" height="197" src="//www.youtube.com/embed/' + youTubeVideoID[1] + '" frameborder="0" allowfullscreen></iframe>';
     $(embed).appendTo(obj.closest('.form-textarea-wrapper:not(.media-found)').find('#media-rendered'));
+  }
+
+  /**
+   * Render Soundcloud Media.
+   *
+   * @param obj
+   *   The textarea object beneath which we will render the media.
+   */
+  function renderSoundcloud(obj) {
+    var soundcloudReg = /((http:\/\/(soundcloud\.com\/.*|soundcloud\.com\/.*\/.*|soundcloud\.com\/.*\/sets\/.*|soundcloud\.com\/groups\/.*|snd\.sc\/.*))|(https:\/\/(soundcloud\.com\/.*|soundcloud\.com\/.*\/.*|soundcloud\.com\/.*\/sets\/.*|soundcloud\.com\/groups\/.*)))/i;
+    var soundcloudURL = obj.val().match(soundcloudReg);
+    // Initialize soundcloud app (http://soundcloud.com/you/apps).
+    SC.initialize({
+      client_id: Drupal.settings.musicExtras.soundcloudClientId
+    });
+    SC.oEmbed(soundcloudURL[1], {color: "d1344e"}, document.getElementById("media-rendered"));
+  }
+
+  /**
+   * Render Vimeo Media.
+   *
+   * @param obj
+   *   The textarea object beneath which we will render the media.
+   */
+  function renderVimeo(obj) {
+    var vimeoReg = /(http:\/\/|https:\/\/)?(www\.)?(vimeo\.com\/)([0-9]+)/;
   }
 })(jQuery);
