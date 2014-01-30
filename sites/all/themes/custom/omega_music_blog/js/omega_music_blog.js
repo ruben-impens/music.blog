@@ -145,7 +145,7 @@
         var soundcloudURL = obj.val().match(soundcloudReg);
         // Initialize soundcloud app (http://soundcloud.com/you/apps).
         SC.initialize({
-          client_id: '80068e8501522ab4e8619c44139f033b'
+          client_id: Drupal.settings.musicExtras.soundcloudClientId
         });
         SC.oEmbed(soundcloudURL[1], {color: "d1344e"},  document.getElementById("media-rendered"));
         break;

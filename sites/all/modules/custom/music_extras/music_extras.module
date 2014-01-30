@@ -38,6 +38,11 @@ function music_extras_preprocess_page(&$variables) {
   if (!path_is_admin(current_path())) {
     // Add soundcloud sdk.
     drupal_add_js('http://connect.soundcloud.com/sdk.js', 'external');
+    // Make some variables available for javascript.
+    $settings = array(
+      'soundcloudClientId' => variable_get('soundcloud_client_id', ''),
+    );
+    drupal_add_js(array('musicExtras' => $settings), 'setting');
     // Add user menu on non-admin pages.
     $variables['page']['top_bar']['system-user-menu'] = music_extras_render_block('system', 'user-menu');
   }
