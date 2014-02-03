@@ -6,6 +6,7 @@
  */
 
 require_once 'includes/music_extras.helper.inc';
+require_once 'includes/music_extras.views.inc';
 
 /**
  * Implements hook_menu().
@@ -29,6 +30,26 @@ function music_extras_menu() {
     'file' => 'includes/music_extras.forms.inc',
   );
   return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function music_extras_theme($existing, $type, $theme, $path) {
+  return array(
+    'youtube_player' => array(
+      'variables' => array('uri' => NULL, 'options' => NULL),
+      'file' => 'music_extras.theme.inc',
+      'path' => $path . '/themes',
+      'template' => 'youtube-player',
+    ),
+    'soundcloud_player' => array(
+      'variables' => array('uri' => NULL, 'options' => NULL),
+      'file' => 'music_extras.theme.inc',
+      'path' => $path . '/themes',
+      'template' => 'soundcloud-player',
+    ),
+  );
 }
 
 /**
