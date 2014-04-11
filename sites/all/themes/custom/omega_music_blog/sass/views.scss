@@ -1,0 +1,21 @@
+@import "base";
+
+/* Defaults */
+.views-row {
+  @include border-radius(0 3px 3px 0);
+  //@include box-shadow(#ccc 0 0 10px);
+  border: solid 1px #ddd;
+  background: $white;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  iframe {
+    height: 297px !important;
+    display: block;
+  }
+}
+
+/* Status updates homepage */
+.views-field-field-body-1 {
+  float: left;
+  width: 55%;
+}

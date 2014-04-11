@@ -22,7 +22,7 @@ function music_extras_render_media(&$input) {
       // Render youtube player.
       $options = array(
         'width' => '100%',
-        'height' => '400',
+        'height' => '297',
       );
       $input = theme('youtube_player', array('uri' => $href, 'options' => $options));
     }
@@ -84,14 +84,15 @@ function music_extras_body_placeholder() {
  *   SoundCloud embed code or FALSE if no code is available.
  */
 function music_extras_fetch_soundcloud_embed_url($uri) {
-  $curl_url = 'http://soundcloud.com/oembed?format=json&url=' . urlencode($uri) . '&iframe=true';
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $curl_url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  $result = curl_exec($ch);
-  curl_close($ch);
-  if (!empty($result)) {
-    $result = json_decode($result);
+  $data = array(
+    'format' => 'json',
+    'url' => $uri,
+    'iframe' => 'true',
+  );
+  $url = url('http://soundcloud.com/oembed', array('query' => $data));
+  $result = drupal_http_request($url);
+  if ($result->code == '200' && isset($result->data) && !empty($result->data)) {
+    $result = json_decode($result->data);
     return $result->html;
   }
   return FALSE;

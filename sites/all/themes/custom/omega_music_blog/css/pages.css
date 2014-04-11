@@ -42,7 +42,7 @@ body {
   background: #525252;
   display: none;
   font-size: 1.2rem;
-  padding: 0.8rem 0 0.3rem 0;
+  padding: .8rem 0 .3rem 0;
 }
 .l-top-bar ul li {
   display: inline-block;
@@ -88,7 +88,7 @@ body {
   color: white;
   cursor: pointer;
   float: right;
-  padding: 0 0.4rem 0.3rem 0.4rem;
+  padding: 0 .4rem .3rem .4rem;
 }
 
 .l-page {

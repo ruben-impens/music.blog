@@ -35,6 +35,7 @@ zones[footer] = Footer
 stylesheets[all][] = css/pages.css
 stylesheets[all][] = css/page-elements.css
 stylesheets[all][] = css/forms.css
+stylesheets[all][] = css/views.css
 stylesheets[all][] = css/responsive.css
 
 ; ========================================

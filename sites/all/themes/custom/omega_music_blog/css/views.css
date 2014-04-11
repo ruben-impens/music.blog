@@ -1,0 +1,22 @@
+/* Defaults */
+.views-row {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  -ms-border-radius: 0 3px 3px 0;
+  -o-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  border: solid 1px #ddd;
+  background: white;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+.views-row iframe {
+  height: 297px !important;
+  display: block;
+}
+
+/* Status updates homepage */
+.views-field-field-body-1 {
+  float: left;
+  width: 55%;
+}
