@@ -1,0 +1,7 @@
+name = Music Blog Core
+description = Core module for the Music Blog.
+core = 7.x
+version = 7.x-1.x
+package = Music Blog
+
+files[] = "lib/music_core.core.inc"
